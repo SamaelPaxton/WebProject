@@ -19,7 +19,10 @@
 body {
     font-family: 'Roboto Condensed', sans-serif;
     background-image: url('../images/bgSingleProduct.jpg');
-    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+     background-size: cover;
 }
 a.button,
 button {

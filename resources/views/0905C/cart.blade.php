@@ -48,7 +48,7 @@
                   </li>
                   @if (Session::has('loginID'))
                   <li class="nav-item" >
-                      <a class="nav-link" style="color: black">Welcome: {{Session::get('loginName')}}</a>
+                      <a class="nav-link" style="color: black" href="{{url('profile')}}">Welcome: {{Session::get('loginName')}}</a>
                   </li>
                   <li class="nav-item" >
                       <a class="nav-link" href="{{url('logout')}}" style="color: black">Logout</a>

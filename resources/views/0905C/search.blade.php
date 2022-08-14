@@ -55,7 +55,7 @@
                       </li>
                       @if (Session::has('loginID'))
                       <li class="nav-item">
-                          <a class="nav-link" href="{{url('editCustomer')}}">Welcome: {{Session::get('loginName')}}</a>
+                          <a class="nav-link" href="{{url('profile')}}">Welcome: {{Session::get('loginName')}}</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="{{url('logout')}}">Logout</a>
