@@ -21,7 +21,6 @@ class CartController extends Controller
             $cart->paymentMethod = "Cash";
             $cart->customerID = $temp;
             $cart->save();
-            return view('0905C.login');
         }
     }
     public function searchForCart($temp1)
