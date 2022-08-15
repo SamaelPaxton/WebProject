@@ -93,10 +93,17 @@ class CustomerController extends Controller
     public function confirmDelete($id)
     {
         $deleteCart = new CartController();
-        $deleteCart->deleteCart($id);
-        $data = Customer::where('customerID', '=', $id)->delete();
-        Session::flush();
-        return redirect('products');
+        if($deleteCart->searchForCart($id) == null){
+            $data = Customer::where('customerID', '=', $id)->delete();
+            Session::flush();
+            return redirect('products');
+        }else{
+            $deleteCart->deleteCart($id);
+            $data = Customer::where('customerID', '=', $id)->delete();
+            Session::flush();
+            return redirect('products');
+        }
+        
     }
 }
 
