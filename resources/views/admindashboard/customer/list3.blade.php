@@ -146,9 +146,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{url('admindashboard.customer.list3')}}" class="nav-link">
+            <a href="{{url('admindashboard.cart.cartlist')}}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
-              <p>Customer Management</p>
+              <p>Cart Management</p>
             </a>
           </li>
 
