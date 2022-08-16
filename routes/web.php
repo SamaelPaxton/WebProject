@@ -44,7 +44,7 @@ Route::get('/profile', [CustomerController::class, 'profile']);
 Route::get('profileedit/{id}', [CustomerController::class, 'edit3']);
 Route::post('update3', [CustomerController::class, 'update3']);
 Route::get('deleteProfile/{id}', [CustomerController::class, 'confirmDelete']);
-
+//Customer adding/editing/removing item from cart
 Route::get('singleProduct/{id}', [ProductController2::class, 'getSingleProduct']);
 Route::post('addToCart/{id}', [CartOrderController::class, 'addToCart']);
 Route::get('cart', [CartController::class, 'index']);
@@ -54,21 +54,28 @@ Route::post('quantityUpdate', [CartOrderController::class, 'quantityUpdate']);
 
 Route::get('admindashboard.admin.list', [AdminController::class, 'index']);
 Route::get('admindashboard.admin', [AdminController::class, 'admin']);
-
+//Admin login
 Route::get('admindashboard.login2', [AdminController::class, 'login2']);
 Route::post('login-admin', [AdminController::class, 'loginadmin'])->name('login-admin');
 Route::get('logout2', [AdminController::class, 'logout2']);
-
+//Product management
 Route::get('admindashboard.product.list2', [ProductController::class, 'index2']);
 Route::get('admindashboard.product.add', [ProductController::class, 'add']);
 Route::get('admindashboard.product.edit/{id}', [ProductController::class, 'edit']);
-
+//Admin management 
 Route::get('admindashboard.admin.list', [AdminController::class, 'index']);
 Route::get('admindashboard.admin.add2', [AdminController::class, 'add2']);
 Route::post('save2', [AdminController::class, 'save2']);
 Route::get('admindashboard.admin.edit2/{id}', [AdminController::class, 'edit2']);
 Route::post('update2', [AdminController::class, 'update2']);
 Route::get('delete2/{id}', [AdminController::class, 'delete2']);
+//Customer management
+Route::get('admindashboard.customer.list3', [CustomerController::class, 'index3']);
+Route::get('admindashboard.customer.add_user', [CustomerController::class, 'add_user']);
+Route::post('save_user', [CustomerController::class, 'save_user']);
+Route::get('admindashboard.customer.edit_user/{id}', [CustomerController::class, 'edit_user']);
+Route::post('update_user', [CustomerController::class, 'update_user']);
+Route::get('delete_user/{id}', [CustomerController::class, 'delete_user']);
 
 
 
