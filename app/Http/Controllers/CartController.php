@@ -51,5 +51,23 @@ class CartController extends Controller
         $deleteAllOrder->deleteAllItem($search->cartID); //delete all order in cartOrder before deleting cart to prevent foreign key
         $cart = Cart::where('customerID', '=', $id)->delete();//delete the cart itself before deleting customer to prevent foreign key
     }
+
+    public function cartList(){
+        $data = Cart::join('cartOrders', 'carts.cartID', '=', 'cartOrders.cartID')
+                    ->join('customers', 'customers.customerID', '=', 'carts.customerID')
+                    ->groupBy('carts.cartID')
+                    ->get(['carts.cartID', 'customers.customerUsername']);
+        $total = CartOrder::join('products', 'products.productID', '=', 'cartOrders.productID')
+                          ->get(['products.productPrice', 'cartOrders.cartID', 'cartOrders.productAmount']);
+        return view ('admindashboard.cart.cartlist', compact('data', 'total'));
+    }
+    public function cartdetail($id)
+    {
+        $data = CartOrder::join('products', 'cartOrders.productID', '=', 'products.productID')
+                ->where('cartOrders.cartID', '=', $id)
+                ->get(['cartOrders.productAmount', 'products.productName', 'products.productImage1', 
+                    'products.productPrice', 'products.productDetails', 'cartOrders.itemOrder']);
+        return view('admindashboard.cart.cartdetail', compact('data'));
+    }
 }
 ?>
