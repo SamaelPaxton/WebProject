@@ -61,5 +61,13 @@ class CartOrderController extends Controller
     {
         $data = CartOrder::where('cartID', '=', $cartID)->delete();
     }
+    public function adminquantityedit($id)  
+    {
+        $data = CartOrder::join('products', 'cartOrders.productID', '=', 'products.productID')
+                         ->join('carts', 'carts.cartID', '=', 'cartOrders.cartID')
+                         ->where('cartOrders.itemOrder', '=', $id)
+                         ->select('cartOrders.itemOrder', 'cartOrders.productAmount', 'products.productName', 'carts.cartID')->first();
+        return view('admindashboard.cart.adminquantityedit', compact('data'));
+    }
 }
 ?>
