@@ -146,6 +146,13 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{url('admindashboard.customer.list3')}}" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>Customer Management</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{url('logout2')}}" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>Logout</p>
