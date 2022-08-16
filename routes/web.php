@@ -76,6 +76,11 @@ Route::post('save_user', [CustomerController::class, 'save_user']);
 Route::get('admindashboard.customer.edit_user/{id}', [CustomerController::class, 'edit_user']);
 Route::post('update_user', [CustomerController::class, 'update_user']);
 Route::get('delete_user/{id}', [CustomerController::class, 'delete_user']);
+//Cart management
+Route::get('admindashboard.cart.cartlist', [CartController::class, 'cartList']);
+Route::get('cartDetail/{id}', [CartController::class, 'cartdetail']);
+Route::get('adminquantityedit/{id}', [CartOrderController::class, 'adminquantityedit']);
+
 
 
 
