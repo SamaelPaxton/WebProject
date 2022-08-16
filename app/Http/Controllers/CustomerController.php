@@ -103,7 +103,70 @@ class CustomerController extends Controller
             Session::flush();
             return redirect('products');
         }
-        
+    }
+    public function index3()
+    {
+        if (Session::get('loginID')!=null){
+            $customerdata = Customer::get();
+            return view('admindashboard.customer.list3', compact('customerdata'));
+        }else{
+            return redirect('admindashboard.login2')->with('restricted','require login first');
+        }
+    }
+
+    public function add_user()
+    {
+        $customers = Customer::get();
+        return view('admindashboard.customer.add_user', compact('customers'));
+    }
+
+    public function save_user(Request $request)
+    {
+        //dd($request->all());
+        $customerinfo = new Customer();
+        $customerinfo->customerUsername = $request->name;
+        $customerinfo->customerPassword = $request->password;
+        $customerinfo->customerPhone = $request->phone;
+        $customerinfo->save();
+        return redirect()->back()->with('success', 'Customer added successfully!');
+    }
+
+    public function edit_user($id)
+    {
+        $customerdata = Customer::where('customerID', '=', $id)->first();
+        return view('admindashboard.customer.edit_user', compact('customerdata'));
+    }
+
+    public function update_user(Request $request)
+    {
+        $customerID = $request->id;
+        $customerUsername = $request->name;
+        $customerPhone = $request->phone;
+
+        Customer::where('customerID', '=', $customerID)->update([
+            'customerUsername'=>$customerUsername,
+            'customerPhone'=>$customerPhone
+
+            // 'productName'=>$request->name,
+            // 'productPrice'=>$request->price,
+            // 'productDetails'=>$request->detail,
+            // 'productImage1'=>$request->image,
+            // 'producerID'=>$request->producer
+        ]);
+        return redirect()->back()->with('success', 'Customer updated successfully!');
+    }
+
+    public function delete_user($id)
+    {
+        $deleteCart = new CartController();
+        if($deleteCart->searchForCart($id) == null){
+            $data = Customer::where('customerID', '=', $id)->delete();
+            return redirect()->back()->with('success', 'Customer removed successfully!');
+        }else{
+            $deleteCart->deleteCart($id);
+            $data = Customer::where('customerID', '=', $id)->delete();
+            return redirect()->back()->with('success', 'Customer removed successfully!');
+        }
     }
 }
 
