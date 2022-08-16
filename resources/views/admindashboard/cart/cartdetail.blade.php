@@ -250,7 +250,8 @@ label {
   </div>                    
 @endif
 <h1>Shopping Cart</h1>
-
+<span><a href="{{url('admindashboard.cart.cartlist')}}" class="btn btn-success">Back</a></span>
+<br><br>
     <div class="shopping-cart">
         <div class="column-labels">
           <label class="product-image">Image</label>

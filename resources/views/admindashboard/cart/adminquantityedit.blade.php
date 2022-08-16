@@ -37,7 +37,7 @@
                     </div> 
                     <br>
                         <button class="btn btn-primary" type="submit">Update</button>
-                        <a href="{{url('admindashboard.cart.cartlist')}}" class="btn btn-success">Back</a>
+                        <a href="{{url('cartDetail/'.$data->cartID)}}" class="btn btn-success">Back</a>
                 </form>
             </div>
         </div>
