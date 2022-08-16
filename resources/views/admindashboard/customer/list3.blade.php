@@ -201,7 +201,11 @@
     <div class="container" style="margin-top: 20px;">
         <div class="row">
             <div class="col-md-12">
+              <div style="margin-right: 10%; float:right;">
+                <a href="{{url('admindashboard.customer.add_user')}}" class="btn btn-outline-success">Add new</a>
+              </div>
                 <h2>Customer List</h2>
+                
                 {{-- <div class="col-md-8">
                     <form action="search" method="get">
                         <div class="input-group">
@@ -213,9 +217,7 @@
                     </form>
                 </div> --}}
                     
-                <div style="margin-right: 10%; float:right;">
-                    <a href="{{url('admindashboard.customer.add_user')}}" class="btn btn-outline-success">Add new</a>
-                </div>
+                
                 @if (Session::has('success'))
                     <div class="alert alert-success" role="alert">
                         {{Session::get('success')}}
