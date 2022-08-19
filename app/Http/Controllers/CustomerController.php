@@ -79,6 +79,10 @@ class CustomerController extends Controller
 
     public function update3(Request $request)
     {
+        $temp = Customer::where('customerUsername', 'like', $request->customerUsername)->first();
+        if($temp != null){
+            return back()->with('duplicate', 'Duplicate username is not accepted');
+        }
         $customerID = $request->id;
         $customerUsername = $request->name;
         $customerPhone = $request->phone;
@@ -122,6 +126,10 @@ class CustomerController extends Controller
 
     public function save_user(Request $request)
     {
+        $temp = Customer::where('customerUsername', 'like', $request->customerUsername)->first();
+        if($temp != null){
+            return back()->with('duplicate', 'Duplicate username is not accepted');
+        }
         //dd($request->all());
         $customerinfo = new Customer();
         $customerinfo->customerUsername = $request->name;
@@ -139,6 +147,10 @@ class CustomerController extends Controller
 
     public function update_user(Request $request)
     {
+        $temp = Customer::where('customerUsername', 'like', $request->customerUsername)->first();
+        if($temp != null){
+            return back()->with('duplicate', 'Duplicate username is not accepted');
+        }
         $customerID = $request->id;
         $customerUsername = $request->name;
         $customerPhone = $request->phone;
