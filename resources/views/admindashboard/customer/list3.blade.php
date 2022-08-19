@@ -235,6 +235,7 @@
                             <th>ID</th>
                             <th>Customer name</th>
                             <th>Phone</th>
+                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -244,6 +245,7 @@
                                 <td>{{$row->customerID}}</td>
                                 <td>{{$row->customerUsername}}</td>
                                 <td>{{$row->customerPhone}}</td>
+                                <td>{{$row->customerEmail}}</td>
                                 <td>
                                     <a href="{{url('admindashboard.customer.edit_user/'. $row->customerID)}}" class="btn btn-success">Edit</a>
                                     <a href="{{url('delete_user/'. $row->customerID)}}" class="btn btn-danger"
