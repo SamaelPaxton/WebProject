@@ -83,12 +83,14 @@ class CustomerController extends Controller
         $customerID = $request->id;
         $customerUsername = $request->name;
         $customerPassword = Hash::make($request->password);
+        $customerEmail = $request->mail;
         $customerPhone = $request->phone;
 
         Customer::where('customerID', '=', $customerID)->update([
             'customerUsername'=>$customerUsername,
             'customerPhone'=>$customerPhone,
-            'customerPassword'=>$customerPassword
+            'customerPassword'=>$customerPassword,
+            'customerEmail'=>$customerEmail
         ]);
         return redirect()->back()->with('success', 'Customer updated successfully!');
         // return view ('0905C.profileedit', compact('request'));

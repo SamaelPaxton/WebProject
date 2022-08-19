@@ -45,7 +45,10 @@
                         <label class="form-label" for="name">Customer name</label>
                         <input type="text" name="name" class="form-control" value="{{$userdata->customerUsername}}" readonly>
                     </div>
-
+                    <div class="md-3">
+                        <label class="form-label" for="phone">Customer email</label>
+                        <input type="text" name="phone" class="form-control" value="{{$userdata->customerEmail}}" readonly>
+                    </div>
                     <div class="md-3">
                         <label class="form-label" for="phone">Customer Phone</label>
                         <input type="text" name="phone" class="form-control" value="{{$userdata->customerPhone}}" readonly>

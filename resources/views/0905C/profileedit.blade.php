@@ -54,6 +54,10 @@
                         <input type="password" name="password" class="form-control">
                     </div>
                     <div class="md-3">
+                        <label class="form-label" for="phone">Customer email</label>
+                        <input type="mail" name="mail" class="form-control" value="{{$userdata->customerEmail}}">
+                    </div>
+                    <div class="md-3">
                         <label class="form-label" for="phone">Customer Phone</label>
                         <input type="text" name="phone" class="form-control" value="{{$userdata->customerPhone}}" >
                     </div>
