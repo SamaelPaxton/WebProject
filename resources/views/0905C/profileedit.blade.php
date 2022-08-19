@@ -50,6 +50,10 @@
                         <input type="text" name="name" class="form-control" value="{{$userdata->customerUsername}}">
                     </div>
                     <div class="md-3">
+                        <label class="form-label" for="phone">Customer password</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="md-3">
                         <label class="form-label" for="phone">Customer Phone</label>
                         <input type="text" name="phone" class="form-control" value="{{$userdata->customerPhone}}" >
                     </div>

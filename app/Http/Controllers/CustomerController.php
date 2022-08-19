@@ -80,16 +80,15 @@ class CustomerController extends Controller
     public function update3(Request $request)
     {
         $temp = Customer::where('customerUsername', 'like', $request->name)->first();
-        if($temp != null){
-            return back()->with('duplicate', 'Duplicate username is not accepted');
-        }
         $customerID = $request->id;
         $customerUsername = $request->name;
+        $customerPassword = Hash::make($request->password);
         $customerPhone = $request->phone;
 
         Customer::where('customerID', '=', $customerID)->update([
             'customerUsername'=>$customerUsername,
-            'customerPhone'=>$customerPhone
+            'customerPhone'=>$customerPhone,
+            'customerPassword'=>$customerPassword
         ]);
         return redirect()->back()->with('success', 'Customer updated successfully!');
         // return view ('0905C.profileedit', compact('request'));
@@ -148,9 +147,6 @@ class CustomerController extends Controller
     public function update_user(Request $request)
     {
         $temp = Customer::where('customerUsername', 'like', $request->name)->first();
-        if($temp != null){
-            return back()->with('duplicate', 'Duplicate username is not accepted');
-        }
         $customerID = $request->id;
         $customerUsername = $request->name;
         $customerPhone = $request->phone;
