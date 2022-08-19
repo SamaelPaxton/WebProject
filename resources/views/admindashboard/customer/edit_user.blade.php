@@ -20,6 +20,9 @@
                         {{Session::get('success')}}
                     </div>
                 @endif
+                @if(Session::has('duplicate'))
+                    <div class="alert alert-danger">{{session::get('duplicate')}}</div>
+                @endif
                 <form action="{{url('update_user')}}" method="POST">
                     @csrf
                     <div class="md-3">
