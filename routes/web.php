@@ -22,19 +22,19 @@ use App\Http\Controllers\SearchController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Outdated
 Route::get('list', [ProductController::class, 'index']);
 Route::get('add', [ProductController::class, 'add']);//add and save go together
 Route::post('save', [ProductController::class, 'save']);
 Route::get('edit/{id}', [ProductController::class, 'edit']);//edit and update go together
 Route::post('update', [ProductController::class, 'update']);//edit and update go together
 Route::get('delete/{id}', [ProductController::class, 'delete']);//edit and update go together
-
+//List product
 Route::get('/', [ProductController2::class, 'index']);
 Route::get('products', [ProductController2::class, 'getProducts']);
-
+//Search
 Route::get('/search', [SearchController::class, 'Search'])->name('web.search');
-
+//register, login, edit profile, delete profile
 Route::get('/login', [CustomerController::class, 'login']);
 Route::get('/register', [CustomerController::class, 'register']);
 Route::post('/register-user', [CustomerController::class, 'registerUser'])->name('register-user');
@@ -51,7 +51,7 @@ Route::get('cart', [CartController::class, 'index']);
 Route::get('removeItem/{id}', [CartOrderController::class, 'removeItem']);
 Route::get('quantityEdit/{id}', [CartOrderController::class, 'quantityEdit']);
 Route::post('quantityUpdate', [CartOrderController::class, 'quantityUpdate']);
-
+//Admin dashboard
 Route::get('admindashboard.admin.list', [AdminController::class, 'index']);
 Route::get('admindashboard.admin', [AdminController::class, 'admin']);
 //Admin login
