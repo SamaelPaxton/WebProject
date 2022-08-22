@@ -10,6 +10,7 @@ use function Termwind\ask;
 
 class CustomerController extends Controller
 {
+    //---------------------------------Customer-------------------------------------------
     public function login()
     {
         return view('0905C.login');
@@ -109,6 +110,7 @@ class CustomerController extends Controller
             return redirect('products');
         }
     }
+    //------------------------Admin part--------------------------------------------------
     public function index3()
     {
         if (Session::get('loginIDA')!=null){
