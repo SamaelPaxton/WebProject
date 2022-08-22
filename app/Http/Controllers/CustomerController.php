@@ -111,7 +111,7 @@ class CustomerController extends Controller
     }
     public function index3()
     {
-        if (Session::get('loginID')!=null){
+        if (Session::get('loginIDA')!=null){
             $customerdata = Customer::get();
             return view('admindashboard.customer.list3', compact('customerdata'));
         }else{

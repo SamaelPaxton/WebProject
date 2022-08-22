@@ -81,6 +81,8 @@ Route::get('admindashboard.cart.cartlist', [CartController::class, 'cartList']);
 Route::get('cartDetail/{id}', [CartController::class, 'cartdetail']);
 Route::get('adminquantityedit/{id}', [CartOrderController::class, 'adminquantityedit']);
 
+Route::get('test', [AdminController::class, 'test']);
+
 
 
 

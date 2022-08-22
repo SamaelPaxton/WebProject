@@ -250,6 +250,9 @@ label {
   </div>                    
 @endif
 <h1>Shopping Cart</h1>
+@php
+    $final = 0;
+  @endphp
 <span><a href="{{url('admindashboard.cart.cartlist')}}" class="btn btn-success">Back</a></span>
 <br><br>
     <div class="shopping-cart">
@@ -271,6 +274,9 @@ label {
               <p class="product-description">{{$rows->productDetails}}</p>
             </div>
           </a>
+          @php
+            $final +=  $rows->productAmount * $rows->productPrice;
+          @endphp
         <div class="product-price">{{$rows->productPrice}}.000đ</div>
         <div class="product-quantity">
           {{-- <input type="number" value="{{$rows->productAmount}}" min="1"> --}}
@@ -282,6 +288,12 @@ label {
       
       </div>
       @endforeach
+      <div class="totals">
+        <div class="totals-item totals-item-total">
+          <label>Grand Total</label>
+          <div class="totals-value" id="cart-total">{{$final}}.000đ</div>
+        </div>
+      </div>
 <!-- partial -->
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script.js"></script>
 

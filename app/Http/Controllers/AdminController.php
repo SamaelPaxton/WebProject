@@ -21,10 +21,10 @@ class AdminController extends Controller
         ]);
         $admin = Admin::where('adminUsername', '=', $request->adminUsername)->first();
         // $adminpass = Admin::where('adminPassword', '=', $request->adminPassword);
+        
         if($admin){
             if($request->adminPassword == $admin->adminPassword){
-                    
-                $request->session()->put('loginID', $admin->adminID);  
+                $request->session()->put('loginIDA', $admin->adminID);  
                 $request->session()->put('loginName', $admin->adminUsername); 
                 
                 return redirect('admindashboard.admin')->with(['adminUsername'=>$admin->adminUsername]);
@@ -39,15 +39,13 @@ class AdminController extends Controller
 
     public function logout2()
     {   
-        if(Session::get('loginID')){
-            Session::pull('loginID');
-            return redirect('/');
-        }
+            Session::flush(); 
+            return view('0905C.home');
     }
 
     public function admin()
     {
-        if (Session::get('loginID')!=null){
+        if (Session::get('loginIDA')!=null){
             $admin = Admin::get();
             return view('admindashboard.admin', compact('admin'));
         /* $admin = Auth::user(); */
@@ -59,7 +57,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        if (Session::get('loginID')!=null){
+        if (Session::get('loginIDA')!=null){
             $admindata = Admin::get();
             return view('admindashboard.admin.list', compact('admindata'));
         }else{
@@ -113,6 +111,10 @@ class AdminController extends Controller
     {
         $data = Admin::where('adminID', '=', $id)->delete();
         return redirect()->back()->with('success', 'Admin removed successfully!');
+    }
+    public function test()
+    {
+        return view('admindashboard.login2');
     }
 }
 

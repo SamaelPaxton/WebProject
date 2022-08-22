@@ -87,9 +87,8 @@
   </div>
 </nav>
 <br><br>
-
 <div class="shopping-cart">
-
+  <span><a href="{{url('products')}}" class="btn btn-success">Back</a></span>
   <div class="column-labels">
     <label class="product-image">Image</label>
     <label class="product-details">Product</label>
@@ -98,27 +97,40 @@
     <label class="product-removal">Remove</label>
     <label class="product-line-price">Total</label>
   </div>
+  @php
+    $final = 0;
+  @endphp
 @foreach ($data as $rows )
-<div class="product">
-    <div class="product-image">
-      <img src="images/{{$rows->productImage1}}">
-    </div>
-    <a href="{{url('quantityEdit/'.$rows->itemOrder)}}">
-      <div class="product-details">
-        <div class="product-title">{{$rows->productName}}</div>
-        <p class="product-description">{{$rows->productDetails}}</p>
+  <div class="product">
+      <div class="product-image">
+        <img src="images/{{$rows->productImage1}}">
       </div>
-    </a>
-  <div class="product-price">{{$rows->productPrice}}.000đ</div>
-  <div class="product-quantity">
-    <input type="number" value="{{$rows->productAmount}}" min="1">
+      <a href="{{url('quantityEdit/'.$rows->itemOrder)}}">
+        <div class="product-details">
+          <div class="product-title">{{$rows->productName}}</div>
+          <p class="product-description">{{$rows->productDetails}}</p>
+        </div>
+      </a>
+      @php
+        $final +=  $rows->productAmount * $rows->productPrice;
+      @endphp
+    <div class="product-price">{{$rows->productPrice}}.000đ</div>
+    <div class="product-quantity">
+      <input type="number" value="{{$rows->productAmount}}" min="1">
+    </div>
+    <div class="product-removal">
+      <a href="{{url('removeItem/'.$rows->itemOrder)}}"><button class="remove-product" type="submit">Remove</button></a>
+    </div>
+    <div class="product-line-price">{{$total = $rows->productPrice * $rows->productAmount}}.000đ</div>
   </div>
-  <div class="product-removal">
-    <a href="{{url('removeItem/'.$rows->itemOrder)}}"><button class="remove-product" type="submit">Remove</button></a>
-  </div>
-  <div class="product-line-price">{{$total = $rows->productPrice * $rows->productAmount}}.000đ</div>
-</div>
+  
 @endforeach
+<div class="totals">
+  <div class="totals-item totals-item-total">
+    <label>Grand Total</label>
+    <div class="totals-value" id="cart-total">{{$final}}.000đ</div>
+  </div>
+</div>
 <!-- partial -->
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script.js"></script>
 
