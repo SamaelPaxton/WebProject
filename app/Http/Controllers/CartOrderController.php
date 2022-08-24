@@ -20,7 +20,7 @@ class CartOrderController extends Controller
 
             $temp = Session::get('loginID');
             $request->validate([
-                'quantity' => 'integer|min:1'
+                'quantity' => 'integer|min:1|max:30'
             ]);
             $cartOrder = new CartOrder();
             $cartOrder->productID = $id;
@@ -48,7 +48,7 @@ class CartOrderController extends Controller
     public function quantityUpdate(Request $request)
     {
         $request->validate([
-            'quantity' => 'integer|min:1'
+            'quantity' => 'integer|min:1|max:30'
         ]);
         $productAmount = $request->quantity;
         $itemOrder = $request->itemOrder;
