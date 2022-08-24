@@ -237,6 +237,11 @@
                         {{Session::get('success')}}
                     </div>
                 @endif
+                @if (Session::has('notfound'))
+                    <div class="alert alert-danger" role="alert">
+                        {{Session::get('notfound')}}
+                    </div>
+                @endif
                 <table class="table table-hover">
                     <thead>
                         <tr>
