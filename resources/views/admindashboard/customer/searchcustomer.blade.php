@@ -252,17 +252,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($query as $rows)
+                            
+                        
                             <tr>
-                                <td>{{$query->customerID}}</td>
-                                <td>{{$query->customerUsername}}</td>
-                                <td>{{$query->customerPhone}}</td>
-                                <td>{{$query->customerEmail}}</td>
+                                <td>{{$rows->customerID}}</td>
+                                <td>{{$rows->customerUsername}}</td>
+                                <td>{{$rows->customerPhone}}</td>
+                                <td>{{$rows->customerEmail}}</td>
                                 <td>
-                                    <a href="{{url('admindashboard.customer.edit_user/'. $query->customerID)}}" class="btn btn-success">Edit</a>
-                                    <a href="{{url('delete_user/'. $query->customerID)}}" class="btn btn-danger"
+                                    <a href="{{url('admindashboard.customer.edit_user/'. $rows->customerID)}}" class="btn btn-success">Edit</a>
+                                    <a href="{{url('delete_user/'. $rows->customerID)}}" class="btn btn-danger"
                                         onclick="return confirm ('Are you sure!');">Delete</a>
                                 </td>
                             </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

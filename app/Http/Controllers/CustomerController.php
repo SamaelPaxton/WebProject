@@ -182,7 +182,7 @@ class CustomerController extends Controller
     }
     public function searchCustomerName(Request $request)
     {
-        $query = Customer::where('customerUsername', '=', $request->search)->first();
+        $query = Customer::where('customerUsername', 'like', "%{$request->search}%")->get();
         if($query != null){
             return view('admindashboard.customer.searchcustomer', compact('query'));
         }else{
