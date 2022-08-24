@@ -180,6 +180,16 @@ class CustomerController extends Controller
             return redirect()->back()->with('success', 'Customer removed successfully!');
         }
     }
+    public function searchCustomerName(Request $request)
+    {
+        $query = Customer::where('customerUsername', '=', $request->search)->first();
+        if($query != null){
+            return view('admindashboard.customer.searchcustomer', compact('query'));
+        }else{
+            return redirect()->back()->with('notfound', 'Customer not found!');
+        }
+       
+    }
 }
 
 ?>

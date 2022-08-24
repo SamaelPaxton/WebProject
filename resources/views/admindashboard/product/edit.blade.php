@@ -52,7 +52,7 @@
                         <select name="producer" class="form-control">
                             @foreach ($producer as $row)
                                 <option value="{{$row->producerID}} {{$row->producerID == $data->producerID ? 'selected': ''}}">{{$row->producerName}}</option>
-                            @endforeach
+                            @endforeach 
                         </select>
                         {{-- <input type="number" name="producer" class="form-control" value="{{$data->producerID}}"> --}}
                     </div> <br>

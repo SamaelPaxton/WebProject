@@ -65,9 +65,9 @@
           <i class="fas fa-search"></i>
         </a>
         <div class="navbar-search-block">
-          <form class="form-inline" action="{{url('searchCustomer')}}" method="GET">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" name='search' type="search" placeholder="Search for customer username" aria-label="Search" value="">
+            <form class="form-inline" action="{{url('searchCustomer')}}" method="GET">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" name='search' type="search" placeholder="Search for customer username" aria-label="Search" value="">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fas fa-search"></i>
@@ -198,7 +198,6 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
     <!doctype html>
 <html lang="en">
   <head>
@@ -237,6 +236,11 @@
                         {{Session::get('success')}}
                     </div>
                 @endif
+                @if (Session::has('notfound'))
+                    <div class="alert alert-danger" role="alert">
+                        {{Session::get('notfound')}}
+                    </div>
+                @endif
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -248,19 +252,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($customerdata as $row )
                             <tr>
-                                <td>{{$row->customerID}}</td>
-                                <td>{{$row->customerUsername}}</td>
-                                <td>{{$row->customerPhone}}</td>
-                                <td>{{$row->customerEmail}}</td>
+                                <td>{{$query->customerID}}</td>
+                                <td>{{$query->customerUsername}}</td>
+                                <td>{{$query->customerPhone}}</td>
+                                <td>{{$query->customerEmail}}</td>
                                 <td>
-                                    <a href="{{url('admindashboard.customer.edit_user/'. $row->customerID)}}" class="btn btn-success">Edit</a>
-                                    <a href="{{url('delete_user/'. $row->customerID)}}" class="btn btn-danger"
+                                    <a href="{{url('admindashboard.customer.edit_user/'. $query->customerID)}}" class="btn btn-success">Edit</a>
+                                    <a href="{{url('delete_user/'. $query->customerID)}}" class="btn btn-danger"
                                         onclick="return confirm ('Are you sure!');">Delete</a>
                                 </td>
                             </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -312,3 +314,4 @@
 <script src="dist/js/pages/dashboard.js"></script>
 </body>
 </html>
+
