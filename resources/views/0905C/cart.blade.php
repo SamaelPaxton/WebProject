@@ -26,6 +26,7 @@
     {{Session::get('success')}}
   </div>                    
 @endif
+
 <nav class="navbar navbar-expand-lg navbar-light shadow" style="background-color: white">
   <div class="container d-flex justify-content-between align-items-center">
 
@@ -98,9 +99,10 @@
     <label class="product-line-price">Total</label>
   </div>
   @php
-    $final = 0;
+    $final = 0; $id=0;
   @endphp
 @foreach ($data as $rows )
+  {{$id = $rows->cartID}}
   <div class="product">
       <div class="product-image">
         <img src="images/{{$rows->productImage1}}">
@@ -131,6 +133,14 @@
     <div class="totals-value" id="cart-total">{{$final}}.000đ</div>
   </div>
 </div>
+<a href="{{url('receipt/'.$id.'/'.$final)}}">
+  <button class="checkout">Proceed to checkout</button>
+</a>
+@if (Session::has('noitem'))
+<span class="alert alert-danger" role="alert">
+    {{Session::get('noitem')}}
+</span>
+@endif
 <!-- partial -->
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script.js"></script>
 

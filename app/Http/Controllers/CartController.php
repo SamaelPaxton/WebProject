@@ -13,7 +13,6 @@ class CartController extends Controller
 {
     public function createCart()
     {   
-        
         $temp = Session::get('loginID');
         $search = $this->searchForCart($temp);
         if($search == null){
@@ -36,7 +35,7 @@ class CartController extends Controller
                 ->join('products', 'cartOrders.productID', '=', 'products.productID')
                 ->where('carts.customerID', '=', $temp)
                 ->get(['cartOrders.productAmount', 'products.productID', 'products.productName', 'products.productImage1', 
-                    'products.productPrice', 'products.productDetails', 'cartOrders.itemOrder']);
+                    'products.productPrice', 'products.productDetails', 'cartOrders.itemOrder', 'carts.cartID']);
             return view('0905C.cart', compact('data'));
         }else{
             return redirect('login')->with('restricted', 'User is required to log in');
@@ -68,6 +67,35 @@ class CartController extends Controller
                 ->get(['cartOrders.productAmount', 'products.productName', 'products.productImage1', 
                     'products.productPrice', 'products.productDetails', 'cartOrders.itemOrder']);
         return view('admindashboard.cart.cartdetail', compact('data'));
+    }
+//----------------------Receipt--------------------------
+    public function getReceipt($id, $total)
+    {
+        $temp = Cart::where('cartID', '=', $id)->first();
+        if($temp == null){
+            return redirect()->route('cart')->with('noitem', 'Please add an item to cart first');
+        }
+        $data = Cart::join('customers', 'customers.customerID', '=', 'carts.customerID')
+                    ->where('carts.cartID', '=', $id)->first();
+        return view('0905C.receipt', compact('data', 'total'));
+    }
+    public function editReceipt($id)
+    {
+        $data = Cart::join('customers', 'customers.customerID', '=', 'carts.customerID')
+                    ->where('carts.cartID', '=', $id)->first();
+        return view('0905C.receiptEdit', compact('data'));
+    }
+    public function receiptUpdate(Request $request, $id)
+    {
+        $deliverAddress = $request->deliverAddress;
+        $deliverInstruction = $request->deliveryInstruction;
+        $datetime = $request->datetime;
+        Cart::where('cartID', '=', $id)->update([
+            'deliveryAddress'=>$deliverAddress,
+            'deliveryInstruction'=>$deliverInstruction,
+            'datetime'=>$datetime
+        ]);
+        return redirect()->back()->with('success', 'Delivery information updated successfully!');
     }
 }
 ?>

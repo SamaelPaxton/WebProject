@@ -47,7 +47,7 @@ Route::get('deleteProfile/{id}', [CustomerController::class, 'confirmDelete']);
 //Customer adding/editing/removing item from cart
 Route::get('singleProduct/{id}', [ProductController2::class, 'getSingleProduct']);
 Route::post('addToCart/{id}', [CartOrderController::class, 'addToCart']);
-Route::get('cart', [CartController::class, 'index']);
+Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('removeItem/{id}', [CartOrderController::class, 'removeItem']);
 Route::get('quantityEdit/{id}', [CartOrderController::class, 'quantityEdit']);
 Route::post('quantityUpdate', [CartOrderController::class, 'quantityUpdate']);
@@ -83,6 +83,11 @@ Route::get('adminquantityedit/{id}', [CartOrderController::class, 'adminquantity
 
 //CustomerSearch
 Route::get('searchCustomer', [CustomerController::class, 'searchCustomerName']);
+
+//Receipt
+Route::get('receipt/{id}/{total}', [CartController::class, 'getReceipt']);
+Route::get('receiptedit/{id}', [CartController::class, 'editReceipt']);
+Route::post('receiptupdate/{id}', [CartController::class, 'receiptUpdate']);
 
 
 
