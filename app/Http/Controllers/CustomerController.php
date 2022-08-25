@@ -185,10 +185,21 @@ class CustomerController extends Controller
         $query = Customer::where('customerUsername', 'like', "%{$request->search}%")->get();
         if($query != null){
             return view('admindashboard.customer.searchcustomer', compact('query'));
-        }else{
-            return redirect()->back()->with('notfound', 'Customer not found!');
         }
-       
+    }
+    public function searchCustomerEmail(Request $request)
+    {
+        $query = Customer::where('customerEmail', 'like', "%{$request->email}%")->get();
+        if($query != null){
+            return view('admindashboard.customer.searchcustomer', compact('query'));
+        }
+    }
+    public function searchCustomerPhone(Request $request)
+    {
+        $query = Customer::where('customerPhone', 'like', "%{$request->phone}%")->get();
+        if($query != null){
+            return view('admindashboard.customer.searchcustomer', compact('query'));
+        }
     }
 }
 

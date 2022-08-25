@@ -229,8 +229,9 @@
                         </div>
                     </form>
                 </div> --}}
-                    
-                
+                    @php
+                      $catch = 1;
+                    @endphp
                 @if (Session::has('success'))
                     <div class="alert alert-success" role="alert">
                         {{Session::get('success')}}
@@ -253,8 +254,7 @@
                     </thead>
                     <tbody>
                         @foreach ($query as $rows)
-                            
-                        
+                        @php $catch = 2; @endphp
                             <tr>
                                 <td>{{$rows->customerID}}</td>
                                 <td>{{$rows->customerUsername}}</td>
@@ -267,6 +267,18 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @if ($catch == 1)
+                          <span>Username not found. Search by email?</span>
+                          <form action="{{url('searchCustomerEmail')}}" method="GET">
+                            <input type="text" name="email" value="" placeholder="Email" style="margin-left: 5px">
+                            <button type="submit">Search</button>
+                          </form>
+                          <span style="margin-left: 5px">Or search by phone?</span>
+                          <form action="{{url('searchCustomerPhone')}}" method="GET">
+                            <input type="text" name="phone" value="" placeholder="Phone" style="margin-left: 5px">
+                            <button type="submit">Search</button>
+                          </form>
+                        @endif
                     </tbody>
                 </table>
             </div>

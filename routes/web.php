@@ -83,6 +83,8 @@ Route::get('adminquantityedit/{id}', [CartOrderController::class, 'adminquantity
 
 //CustomerSearch
 Route::get('searchCustomer', [CustomerController::class, 'searchCustomerName']);
+Route::get('searchCustomerEmail', [CustomerController::class, 'searchCustomerEmail']);
+Route::get('searchCustomerPhone', [CustomerController::class, 'searchCustomerPhone']);
 
 //Receipt
 Route::get('receipt/{id}/{total}', [CartController::class, 'getReceipt']);
