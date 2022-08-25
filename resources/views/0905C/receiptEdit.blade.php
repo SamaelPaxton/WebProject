@@ -31,10 +31,12 @@
                     <div class="md-3">
                         <label class="form-label" for="email">Delivery instruction</label>
                         <input type="text" name="deliveryInstruction" class="form-control" value="{{$data->deliveryInstruction}}">
+                        <span class="text-danger">@error('deliveryInstruction'){{$message}}@enderror</span>
                     </div>
                     <div class="md-3">
                         <label class="form-label" for="email">Delivery address</label>
-                        <input type="text" name="deliverAddress" class="form-control" value="{{$data->deliveryAddress}}">
+                        <input type="text" name="deliveryAddress" class="form-control" value="{{$data->deliveryAddress}}">
+                        <span class="text-danger">@error('deliveryAddress'){{$message}}@enderror</span>
                     </div>
                     <div class="md-3">
                         <label class="form-label" for="email">Purchase time and date</label>

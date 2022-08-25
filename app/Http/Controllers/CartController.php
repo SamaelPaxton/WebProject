@@ -87,12 +87,16 @@ class CartController extends Controller
     }
     public function receiptUpdate(Request $request, $id)
     {
-        $deliverAddress = $request->deliverAddress;
-        $deliverInstruction = $request->deliveryInstruction;
+        $request->validate([
+            'deliveryInstruction'=>'required',
+            'deliveryAddress'=>'required'
+        ]);
+        $deliveryAddress = $request->deliveryAddress;
+        $deliveryInstruction = $request->deliveryInstruction;
         $datetime = $request->datetime;
         Cart::where('cartID', '=', $id)->update([
-            'deliveryAddress'=>$deliverAddress,
-            'deliveryInstruction'=>$deliverInstruction,
+            'deliveryAddress'=>$deliveryAddress,
+            'deliveryInstruction'=>$deliveryInstruction,
             'datetime'=>$datetime
         ]);
         return redirect()->back()->with('success', 'Delivery information updated successfully!');
