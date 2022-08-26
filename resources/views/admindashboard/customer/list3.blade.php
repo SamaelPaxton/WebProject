@@ -266,6 +266,16 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <span>Search by email?</span>
+                        <form action="{{url('searchCustomerEmail')}}" method="GET">
+                          <input type="text" name="email" value="" placeholder="Email" style="margin-left: 5px">
+                          <button type="submit">Search</button>
+                        </form>
+                        <span style="margin-left: 5px">Or search by phone?</span>
+                        <form action="{{url('searchCustomerPhone')}}" method="GET">
+                          <input type="text" name="phone" value="" placeholder="Phone" style="margin-left: 5px">
+                          <button type="submit">Search</button>
+                        </form>
                     </tbody>
                 </table>
             </div>
