@@ -238,6 +238,7 @@
                         <tr>
                             <th>Cart ID</th>
                             <th>Customer name</th>
+                            <th>Status</th>
                             <th>Total price</th>
                             <th>Actions</th>
                         </tr>
@@ -247,6 +248,7 @@
                             <tr>
                                 <td>{{$row->cartID}}</td>
                                 <td>{{$row->customerUsername}}</td>
+                                <td>{{$row->status}}</td>
                                     @php
                                         $final =0; //Declare and reset the value after each cart
                                     @endphp

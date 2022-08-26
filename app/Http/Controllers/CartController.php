@@ -24,7 +24,9 @@ class CartController extends Controller
     }
     public function searchForCart($temp1)
     {
-        $search = Cart::where('customerID', 'like', $temp1)->first();
+        $search = Cart::where('customerID', 'like', $temp1)
+                      ->where('status', 'like', 'Active')
+                      ->first();
         return $search;
     }
     public function index()
@@ -34,6 +36,7 @@ class CartController extends Controller
             $data = Cart::join('cartOrders', 'carts.cartID', '=', 'cartOrders.cartID')
                 ->join('products', 'cartOrders.productID', '=', 'products.productID')
                 ->where('carts.customerID', '=', $temp)
+                ->where('carts.status', '=', 'Active')
                 ->get(['cartOrders.productAmount', 'products.productID', 'products.productName', 'products.productImage1', 
                     'products.productPrice', 'products.productDetails', 'cartOrders.itemOrder', 'carts.cartID']);
             return view('0905C.cart', compact('data'));
@@ -55,7 +58,7 @@ class CartController extends Controller
         $data = Cart::join('cartOrders', 'carts.cartID', '=', 'cartOrders.cartID')
                     ->join('customers', 'customers.customerID', '=', 'carts.customerID')
                     ->groupBy('carts.cartID')
-                    ->get(['carts.cartID', 'customers.customerUsername']);
+                    ->get(['carts.cartID', 'customers.customerUsername', 'carts.status']);
         $total = CartOrder::join('products', 'products.productID', '=', 'cartOrders.productID')
                           ->get(['products.productPrice', 'cartOrders.cartID', 'cartOrders.productAmount']);
         return view ('admindashboard.cart.cartlist', compact('data', 'total'));
@@ -77,6 +80,11 @@ class CartController extends Controller
         }
         $data = Cart::join('customers', 'customers.customerID', '=', 'carts.customerID')
                     ->where('carts.cartID', '=', $id)->first();
+        Cart::where('status', '=', 'Active')
+            ->where('cartID', '=', $id)        
+            ->update([
+            'status'=>'Inactive'
+        ]);
         return view('0905C.receipt', compact('data', 'total'));
     }
     public function editReceipt($id)
